@@ -3,7 +3,7 @@ import React from 'react';
 import mainBgVideo from '../assets/media/main-bg.mp4';
 import Banner from '../components/Banner';
 
-function MainScreen() {
+function MainPage() {
   return (
     <div className="main">
       <video className="main-video" autoPlay muted loop>
@@ -14,4 +14,4 @@ function MainScreen() {
   );
 }
 
-export default MainScreen;
+export default MainPage;

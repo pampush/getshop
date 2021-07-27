@@ -1,13 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MainScreen from './pages/MainScreen';
+import MainPage from './pages/MainPage';
+import MobilePage from './pages/MobilePage';
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route path="/main">
-          <MainScreen />
+          <MainPage />
+        </Route>
+        <Route path="/mobile">
+          <MobilePage />
         </Route>
       </Switch>
     </Router>

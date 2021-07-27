@@ -1,16 +1,17 @@
-@mixin lg
-  @media (min-width: vars.$screen-lg-max) 
-    @content
+@use './vars'
 
-@mixin md
-  @media (min-width: vars.$screen-md-max)
+@mixin xs
+  @media (max-width: vars.$screen-xs-max) 
     @content
 
 @mixin sm
-  @media (min-width: vars.$screen-sm-max) 
+  @media (max-width: vars.$screen-sm-max) 
     @content
 
-@mixin xs
-  @media (min-width: vars.$screen-xs-max) 
+@mixin md
+  @media (max-width: vars.$screen-md-max)
     @content
 
+@mixin lg
+  @media (max-width: vars.$screen-lg-max) 
+    @content

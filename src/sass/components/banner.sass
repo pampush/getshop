@@ -1,9 +1,12 @@
 @use '../vars'
+@use '../mixins'
 
 .main__banner
   right: 0
   bottom: 20vh
   width: 18vw
+  @include mixins.sm
+    width: 160px
 
 .banner
   display: grid
@@ -14,19 +17,24 @@
   background: vars.$primary-bg-color
   padding: 10px
   padding-top: 20px
-
+  transform: translateX(100%)
+  animation: shift 1s ease-out 5s forwards
 
   &__title
     font-size: 16px
     font-weight: 500
     text-align: center
     text-transform: uppercase
+    @include mixins.sm
+      font-size: 14px
 
   &__content
     display: grid
     grid-gap: 20px
     justify-items: center
     padding: 0 10px
+    @include mixins.sm
+      display: none
     &_wrapper
       width: 60%
 
@@ -44,5 +52,14 @@
     padding: 16.5px 67px
     font-weight: 500
     cursor: pointer
+    @include mixins.sm
+      padding: 8px 30px
     &:focus-visible
       outline: 2px solid white
+
+
+@keyframes shift
+  from
+    transform: translateX(100%)
+  to
+    transform: translateX(0)

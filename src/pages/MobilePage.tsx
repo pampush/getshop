@@ -19,13 +19,16 @@ function MobilePage() {
   const { matchLength } = useFormField(format);
 
   return (
-    <ArrowNavigationProvider initialActiveElement={[1, 1]}>
+    <ArrowNavigationProvider initialActiveElement={[1, 1]} gridSize={[6, 4]}>
       <div className="mobile">
         <NavigationLink<HTMLAnchorElement>
           navPosition={[
-            [7, 1],
-            [7, 2],
-            [7, 3],
+            [1, 4],
+            [2, 4],
+            [3, 4],
+            [4, 4],
+            [5, 4],
+            [6, 4],
           ]}>
           {(ref: Ref<HTMLAnchorElement>) => (
             <Link ref={ref} className="btn mobile__close" to="/main" tabIndex={0}>

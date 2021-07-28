@@ -8,7 +8,7 @@ interface NavigationLinkProps<T> {
 }
 
 function NavigationLink<T extends HTMLElement>({ children, navPosition }: NavigationLinkProps<T>) {
-  const elemRef = React.useRef<T>(null);
+  const elemRef = React.useRef<T | null>(null);
   const { activeElement, comparePositions } = useArrowNavigation();
 
   React.useEffect(() => {

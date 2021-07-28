@@ -10,7 +10,7 @@ function MainPage() {
       <video className="main-video" autoPlay muted loop>
         <source src={mainBgVideo} type="video/mp4" />
       </video>
-      <ArrowNavigationProvider initialActiveElement={[2, 2]}>
+      <ArrowNavigationProvider initialActiveElement={[2, 2]} gridSize={[3, 3]}>
         <Banner />
       </ArrowNavigationProvider>
     </div>

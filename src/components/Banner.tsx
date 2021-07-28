@@ -17,10 +17,14 @@ function Banner() {
       </div>
       <NavigationLink<HTMLAnchorElement>
         navPosition={[
+          [1, 1],
           [1, 2],
+          [1, 3],
           [2, 1],
           [2, 3],
+          [3, 1],
           [3, 2],
+          [3, 3],
         ]}>
         {(ref: Ref<HTMLAnchorElement>) => (
           <Link ref={ref} className="btn banner__submit" to="/mobile">

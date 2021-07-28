@@ -20,12 +20,18 @@ export const ArrowNavigationContext = React.createContext<ArrowNavigationContext
 interface ArrowNavigationProps {
   children: JSX.Element[] | JSX.Element;
   initialActiveElement: navigationPosition;
+  gridSize: number[];
 }
 
-function ArrowNavigationProvider({ children, initialActiveElement }: ArrowNavigationProps) {
+function ArrowNavigationProvider({
+  children,
+  initialActiveElement,
+  gridSize,
+}: ArrowNavigationProps) {
   const [activeElement, setActiveElement] =
     React.useState<navigationPosition>(initialActiveElement);
 
+  console.log(activeElement);
 
   const comparePositions = (
     pos1: navigationPosition | Array<navigationPosition>,
@@ -46,26 +52,38 @@ function ArrowNavigationProvider({ children, initialActiveElement }: ArrowNaviga
     return result;
   };
 
+  const boundsCheck = (pos: number[]) => {
+    return gridSize[0] >= pos[0] && gridSize[1] >= pos[1] && pos[0] > 0 && pos[1] > 0;
+  };
+
   React.useEffect(() => {
     globalThis.addEventListener('keydown', (e: KeyboardEvent) => {
       switch (e.key) {
         case 'Up':
         case 'ArrowUp':
-          setActiveElement((prev) => [prev[0] - 1, prev[1]]);
+          setActiveElement((prev) =>
+            boundsCheck([prev[0] - 1, prev[1]]) ? [prev[0] - 1, prev[1]] : prev,
+          );
           break;
         case 'Down':
         case 'ArrowDown':
-          setActiveElement((prev) => [prev[0] + 1, prev[1]]);
+          setActiveElement((prev) =>
+            boundsCheck([prev[0] + 1, prev[1]]) ? [prev[0] + 1, prev[1]] : prev,
+          );
           break;
         case 'Left':
         case 'ArrowLeft':
-          setActiveElement((prev) => [prev[0], prev[1] - 1]);
+          setActiveElement((prev) =>
+            boundsCheck([prev[0], prev[1] - 1]) ? [prev[0], prev[1] - 1] : prev,
+          );
           break;
         case 'Right':
         case 'ArrowRight':
-          setActiveElement((prev) => [prev[0], prev[1] + 1]);
+          setActiveElement((prev) =>
+            boundsCheck([prev[0], prev[1] + 1]) ? [prev[0], prev[1] + 1] : prev,
+          );
           break;
-        
+
         default:
           break;
       }
@@ -73,7 +91,12 @@ function ArrowNavigationProvider({ children, initialActiveElement }: ArrowNaviga
   }, []);
 
   return (
-    <ArrowNavigationContext.Provider value={{ activeElement, setActiveElement, comparePositions }}>
+    <ArrowNavigationContext.Provider
+      value={{
+        activeElement,
+        setActiveElement,
+        comparePositions,
+      }}>
       {children}
     </ArrowNavigationContext.Provider>
   );

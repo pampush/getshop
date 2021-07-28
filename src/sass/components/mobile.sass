@@ -1,11 +1,18 @@
 @use '../vars'
+@use '../mixins'
 
 .mobile 
   background: no-repeat url('../../assets/images/mobile-form-bg.jpg')
   background-size: cover
   background-position: center center
   height: 100vh
+
+
   &__wrapper
+    display: grid
+    grid-template-columns: 1fr
+    grid-template-rows: min-content
+    grid-gap: 13px
     position: absolute
     top: 0
     left: 0
@@ -23,13 +30,44 @@
     text-align: center
     border: 2px solid #000000
     user-select: none
-    &:hover
+    &:active
       background: #000000
       color: #FFFFFF
     &_span2
       grid-column: span 2
+
   &__panel
     display: grid
     grid-template-columns: repeat(3, 1fr)
     grid-gap: 10px
 
+
+  &__field
+    display: flex
+    font-size: 30px
+    font-weight: 700
+    letter-spacing: -1px
+    span
+      font-family: 'Roboto Mono', monospace
+
+  &__description
+    font-size: 14px 
+
+  &__submit
+    background: transparent
+    color: #4E4E4E
+    padding: 12px 50px 
+    border: 1px solid #4E4E4E
+    @include mixins.sm
+      padding: 8px 30px
+
+  &__close
+    position: absolute
+    top: 20px
+    right: 20px
+    border: 2px solid #000000
+    background: #FFFFFF
+    padding: 16px 30px
+    svg
+      width: 28px
+      height: 24px

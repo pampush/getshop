@@ -1,9 +1,26 @@
+
 @use './components/mainScreen'
 @use './components/banner'
 @use './components/mobile'
 
+
 *, *:before, *:after 
   box-sizing: border-box
+
+h1, h2, h3, h4, h5, h6
+  margin: 0 
+
+.btn
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 1rem
+  font-weight: 500
+  cursor: pointer
+  text-decoration: none
+  text-transform: uppercase
+  &:focus-visible
+    outline: 2px solid white
 
 body
   font-family: Roboto, sans-serif

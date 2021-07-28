@@ -15,7 +15,7 @@ function Banner() {
         <div className="banner__details">Сканируйте QR-код или нажмите OK</div>
       </div>
 
-      <Link className="banner__submit" tabIndex={1} to="/mobile">
+      <Link className="btn banner__submit" tabIndex={1} to="/mobile">
         OK
       </Link>
     </div>

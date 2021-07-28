@@ -2,11 +2,19 @@ import React from 'react';
 
 interface FormCellProps {
   content: string;
-  span?: number;
+  handleClick: (char: string) => void;
 }
 
-function FormCell({ content, span }: FormCellProps) {
-  return <div className={`mobile__cell ${span ? `mobile__cell_span${span}` : ''}`}>{content}</div>;
+function FormCell({ content, handleClick }: FormCellProps) {
+  const onClick = () => {
+    handleClick(content);
+  };
+
+  return (
+    <div className={`mobile__cell`} onClick={onClick}>
+      {content}
+    </div>
+  );
 }
 
 export default FormCell;

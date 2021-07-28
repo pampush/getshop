@@ -4,7 +4,7 @@
 .main__banner
   right: 0
   bottom: 20vh
-  width: 18vw
+  width: 20vw
   @include mixins.sm
     width: 160px
 
@@ -18,7 +18,7 @@
   padding: 10px
   padding-top: 20px
   transform: translateX(100%)
-  animation: shift 1s ease-out 5s forwards
+  animation: shift 1s ease-out 1s forwards
 
   &__title
     font-size: 16px
@@ -32,7 +32,6 @@
     display: grid
     grid-gap: 20px
     justify-items: center
-    padding: 0 10px
     @include mixins.sm
       display: none
     &_wrapper
@@ -49,13 +48,9 @@
   &__submit
     background: #000000
     color: vars.$primary-bg-color
-    padding: 16.5px 67px
-    font-weight: 500
-    cursor: pointer
+    padding: 16.5px 67px 
     @include mixins.sm
       padding: 8px 30px
-    &:focus-visible
-      outline: 2px solid white
 
 
 @keyframes shift

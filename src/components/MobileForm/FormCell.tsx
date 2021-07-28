@@ -1,27 +1,31 @@
 import React from 'react';
 
-import { useArrowNavigation } from '../../contexts/ArrowNavigation';
+import { useArrowNavigation, navigationPosition } from '../../contexts/ArrowNavigation';
 
 interface FormCellProps {
   content: string;
   handleClick: (char: string) => void;
-  navPosition: number[];
+  navPosition: navigationPosition | Array<navigationPosition>;
 }
 
 function FormCell({ content, handleClick, navPosition }: FormCellProps) {
+  const elemRef = React.useRef<HTMLButtonElement>(null);
   const { activeElement, comparePositions } = useArrowNavigation();
-  console.log(activeElement, navPosition);
+
+  React.useEffect(() => {
+    if (!elemRef) return;
+    if (comparePositions(navPosition, activeElement)) {
+      elemRef.current?.focus();
+      elemRef.current?.classList.add('global__active');
+    } else elemRef.current?.classList.remove('global__active');
+  }, [activeElement]);
 
   const onClick = () => {
     handleClick(content);
   };
 
   return (
-    <button
-      className={`mobile__cell ${
-        comparePositions(activeElement, navPosition) ? 'global__active' : ''
-      }`}
-      onClick={onClick}>
+    <button ref={elemRef} className="mobile__cell" onClick={onClick}>
       {content}
     </button>
   );

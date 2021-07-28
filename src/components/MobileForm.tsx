@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowNavigationProvider from '../contexts/ArrowNavigation';
+import { navigationPosition } from '../contexts/ArrowNavigation';
 
 import FormCell from './MobileForm/FormCell';
 import FormDelete from './MobileForm/FormDelete';
@@ -23,6 +23,7 @@ function MobileForm({ text, changeText, format }: MobileFormProps) {
     changeText((prev) => prev.slice(0, -1));
   };
 
+
   return (
     <>
       <FormField value={text} format={format} />
@@ -30,19 +31,26 @@ function MobileForm({ text, changeText, format }: MobileFormProps) {
         и с Вами свяжется наш менеджер для дальнейшей консультации
       </span>
       <div className="mobile__panel">
-        <ArrowNavigationProvider initialActiveElement={[1, 1]}>
-          <FormCell content="1" handleClick={handleClick} navPosition={[1, 1]} />
-          <FormCell content="2" handleClick={handleClick} navPosition={[1, 2]} />
-          <FormCell content="3" handleClick={handleClick} navPosition={[2, 1]} />
-          <FormCell content="4" handleClick={handleClick} navPosition={[2, 2]} />
-          <FormCell content="5" handleClick={handleClick} navPosition={[3, 1]} />
-          <FormCell content="6" handleClick={handleClick} navPosition={[3, 2]} />
-          <FormCell content="7" handleClick={handleClick} navPosition={[4, 1]} />
-          <FormCell content="8" handleClick={handleClick} navPosition={[4, 2]} />
-          <FormCell content="9" handleClick={handleClick} navPosition={[5, 1]} />
-          <FormDelete content="Стереть" handleDelete={handleDelete} />
-          <FormCell content="0" handleClick={handleClick} navPosition={[5, 2]} />
-        </ArrowNavigationProvider>
+        <FormCell content="1" handleClick={handleClick} navPosition={[1, 1]} />
+        <FormCell content="2" handleClick={handleClick} navPosition={[1, 2]} />
+        <FormCell content="3" handleClick={handleClick} navPosition={[1, 3]} />
+        <FormCell content="4" handleClick={handleClick} navPosition={[2, 1]} />
+        <FormCell content="5" handleClick={handleClick} navPosition={[2, 2]} />
+        <FormCell content="6" handleClick={handleClick} navPosition={[2, 3]} />
+        <FormCell content="7" handleClick={handleClick} navPosition={[3, 1]} />
+        <FormCell content="8" handleClick={handleClick} navPosition={[3, 2]} />
+        <FormCell content="9" handleClick={handleClick} navPosition={[3, 3]} />
+        <FormDelete
+          content="Стереть"
+          handleDelete={handleDelete}
+          navPosition={
+            [
+              [4, 1],
+              [4, 2],
+            ] as navigationPosition[]
+          }
+        />
+        <FormCell content="0" handleClick={handleClick} navPosition={[4, 3]} />
       </div>
     </>
   );

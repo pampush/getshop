@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Ref } from 'react';
 
-import { useArrowNavigation, navigationPosition } from '../../contexts/ArrowNavigation';
+import { navigationPosition } from '../../contexts/ArrowNavigation';
+import NavigationLink from '../NavigationLink';
 
 interface FormCellProps {
   content: string;
@@ -9,25 +10,18 @@ interface FormCellProps {
 }
 
 function FormCell({ content, handleClick, navPosition }: FormCellProps) {
-  const elemRef = React.useRef<HTMLButtonElement>(null);
-  const { activeElement, comparePositions } = useArrowNavigation();
-
-  React.useEffect(() => {
-    if (!elemRef) return;
-    if (comparePositions(navPosition, activeElement)) {
-      elemRef.current?.focus();
-      elemRef.current?.classList.add('global__active');
-    } else elemRef.current?.classList.remove('global__active');
-  }, [activeElement]);
-
   const onClick = () => {
     handleClick(content);
   };
 
   return (
-    <button ref={elemRef} className="mobile__cell" onClick={onClick}>
-      {content}
-    </button>
+    <NavigationLink<HTMLButtonElement> navPosition={navPosition}>
+      {(ref: Ref<HTMLButtonElement>) => (
+        <button ref={ref} className="mobile__cell" onClick={onClick}>
+          {content}
+        </button>
+      )}
+    </NavigationLink>
   );
 }
 

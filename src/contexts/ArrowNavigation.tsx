@@ -65,6 +65,7 @@ function ArrowNavigationProvider({ children, initialActiveElement }: ArrowNaviga
         case 'ArrowRight':
           setActiveElement((prev) => [prev[0], prev[1] + 1]);
           break;
+        
         default:
           break;
       }

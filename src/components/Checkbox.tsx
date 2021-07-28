@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { KeyboardEvent } from 'react';
 
 import { useArrowNavigation, navigationPosition } from '../contexts/ArrowNavigation';
 
@@ -16,14 +16,21 @@ function Checkbox({ label, navPosition, policyAgree, handleChange }: CheckboxPro
   React.useEffect(() => {
     if (!elemRef) return;
     if (comparePositions(navPosition, activeElement)) {
-      console.log('e');
       elemRef.current?.focus();
     }
   }, [activeElement]);
 
+  const handleClick = (e: KeyboardEvent<HTMLLabelElement>) => {
+    if (e.key === 'Enter') handleChange();
+  };
+
   return (
     <div className="mobile__checkbox-container">
-      <label ref={elemRef} className="checkbox mobile__checkbox" tabIndex={0}>
+      <label
+        ref={elemRef}
+        className="checkbox mobile__checkbox"
+        tabIndex={0}
+        onKeyDown={handleClick}>
         <input
           type="checkbox"
           className="checkbox__input"

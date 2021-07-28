@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Ref } from 'react';
 
-import { useArrowNavigation, navigationPosition } from '../../contexts/ArrowNavigation';
+import { navigationPosition } from '../../contexts/ArrowNavigation';
+import NavigationLink from '../NavigationLink';
 
 interface FormDeleteProps {
   content: string;
@@ -9,21 +10,14 @@ interface FormDeleteProps {
 }
 
 function FormDelete({ content, handleDelete, navPosition }: FormDeleteProps) {
-  const elemRef = React.useRef<HTMLButtonElement>(null);
-  const { activeElement, comparePositions } = useArrowNavigation();
-
-  React.useEffect(() => {
-    if (!elemRef) return;
-    if (comparePositions(navPosition, activeElement)) {
-      elemRef.current?.focus();
-      elemRef.current?.classList.add('global__active');
-    } else elemRef.current?.classList.remove('global__active');
-  }, [activeElement]);
-
   return (
-    <button ref={elemRef} className="mobile__cell mobile__cell_span2" onClick={handleDelete}>
-      {content}
-    </button>
+    <NavigationLink<HTMLButtonElement> navPosition={navPosition}>
+      {(ref: Ref<HTMLButtonElement>) => (
+        <button ref={ref} className="mobile__cell mobile__cell_span2" onClick={handleDelete}>
+          {content}
+        </button>
+      )}
+    </NavigationLink>
   );
 }
 

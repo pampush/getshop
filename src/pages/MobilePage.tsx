@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Ref } from 'react';
 import { Link } from 'react-router-dom';
 
 import MobileForm from '../components/MobileForm';
@@ -7,6 +7,7 @@ import QRImage from '../assets/images/mobile-qr.png';
 import ArrowNavigationProvider from '../contexts/ArrowNavigation';
 import { useFormField } from '../components/MobileForm/FormField';
 import Checkbox from '../components/Checkbox';
+import NavigationLink from '../components/NavigationLink';
 
 const format = '+7(___)___-__-__';
 
@@ -20,9 +21,18 @@ function MobilePage() {
   return (
     <ArrowNavigationProvider initialActiveElement={[1, 1]}>
       <div className="mobile">
-        <Link className="btn mobile__close" to="/main" tabIndex={0}>
-          <CloseIcon />
-        </Link>
+        <NavigationLink<HTMLAnchorElement>
+          navPosition={[
+            [7, 1],
+            [7, 2],
+            [7, 3],
+          ]}>
+          {(ref: Ref<HTMLAnchorElement>) => (
+            <Link ref={ref} className="btn mobile__close" to="/main" tabIndex={0}>
+              <CloseIcon />
+            </Link>
+          )}
+        </NavigationLink>
 
         <div className="mobile__wrapper">
           <h2 className="mobile__title">Введите ваш номер мобильного телефона</h2>
@@ -41,14 +51,30 @@ function MobilePage() {
             />
           )}
 
-          <Link
-            className={`btn mobile__submit ${
-              text.length !== matchLength || !policyAgree ? 'mobile__submit_disable' : ''
-            }`}
-            to="/main"
-            tabIndex={0}>
-            Подтвердить номер
-          </Link>
+          <NavigationLink<HTMLAnchorElement>
+            navPosition={[
+              [6, 1],
+              [6, 2],
+              [6, 3],
+            ]}>
+            {(ref: Ref<HTMLAnchorElement>) => {
+              const res =
+                text.length === matchLength && policyAgree ? (
+                  <Link ref={ref} className="btn mobile__submit" to="/main" tabIndex={0}>
+                    Подтвердить номер
+                  </Link>
+                ) : (
+                  <Link
+                    ref={ref}
+                    className="btn mobile__submit mobile__submit_disable"
+                    to="/mobile"
+                    tabIndex={0}>
+                    Подтвердить номер
+                  </Link>
+                );
+              return res;
+            }}
+          </NavigationLink>
         </div>
 
         <div className="mobile__qr">

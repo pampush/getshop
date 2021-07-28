@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Ref } from 'react';
 import { Link } from 'react-router-dom';
 
 import qrCode from '../assets/images/qr.jpg';
+import NavigationLink from './NavigationLink';
 
 function Banner() {
   return (
@@ -14,10 +15,19 @@ function Banner() {
         <img className="banner__image" height="126px" width="126px" src={qrCode}></img>
         <div className="banner__details">Сканируйте QR-код или нажмите OK</div>
       </div>
-
-      <Link className="btn banner__submit" tabIndex={1} to="/mobile">
-        OK
-      </Link>
+      <NavigationLink<HTMLAnchorElement>
+        navPosition={[
+          [1, 2],
+          [2, 1],
+          [2, 3],
+          [3, 2],
+        ]}>
+        {(ref: Ref<HTMLAnchorElement>) => (
+          <Link ref={ref} className="btn banner__submit" to="/mobile">
+            OK
+          </Link>
+        )}
+      </NavigationLink>
     </div>
   );
 }

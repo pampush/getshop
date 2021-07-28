@@ -2,6 +2,7 @@ import React from 'react';
 
 import mainBgVideo from '../assets/media/main-bg.mp4';
 import Banner from '../components/Banner';
+import ArrowNavigationProvider from '../contexts/ArrowNavigation';
 
 function MainPage() {
   return (
@@ -9,7 +10,9 @@ function MainPage() {
       <video className="main-video" autoPlay muted loop>
         <source src={mainBgVideo} type="video/mp4" />
       </video>
-      <Banner />
+      <ArrowNavigationProvider initialActiveElement={[2, 2]}>
+        <Banner />
+      </ArrowNavigationProvider>
     </div>
   );
 }

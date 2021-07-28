@@ -24,7 +24,7 @@ function MobileForm() {
     <>
       <FormField value={text} format={format} />
       <span className="mobile__description">
-        И с Вами свяжется наш менеджер для дальнейшей консультации
+        и с Вами свяжется наш менеджер для дальнейшей консультации
       </span>
       <div className="mobile__panel">
         <FormCell content="1" handleClick={handleClick} />
@@ -36,7 +36,7 @@ function MobileForm() {
         <FormCell content="7" handleClick={handleClick} />
         <FormCell content="8" handleClick={handleClick} />
         <FormCell content="9" handleClick={handleClick} />
-        <FormDelete content="СТЕРЕТЬ" handleDelete={handleDelete} />
+        <FormDelete content="Стереть" handleDelete={handleDelete} />
         <FormCell content="0" handleClick={handleClick} />
       </div>
     </>

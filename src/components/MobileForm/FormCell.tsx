@@ -11,9 +11,9 @@ function FormCell({ content, handleClick }: FormCellProps) {
   };
 
   return (
-    <div className={`mobile__cell`} onClick={onClick}>
+    <button className={`mobile__cell`} onClick={onClick}>
       {content}
-    </div>
+    </button>
   );
 }
 

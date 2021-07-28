@@ -31,8 +31,11 @@
     justify-content: center
     padding: 12px 30px
     text-align: center
+    font-weight: 500
     border: 2px solid #000000
+    background: transparent
     user-select: none
+    text-transform: uppercase
     &:active
       background: #000000
       color: #FFFFFF
@@ -43,6 +46,7 @@
     display: grid
     grid-template-columns: repeat(3, 1fr)
     grid-gap: 10px
+    padding: 20px 0
 
 
   &__field
@@ -58,7 +62,8 @@
       
 
   &__description
-    font-size: 14px 
+    font-size: 14px
+    text-align: center
 
   &__submit
     background: transparent
@@ -78,3 +83,8 @@
     svg
       width: 28px
       height: 24px
+
+  &__checkbox-container
+    display: grid
+    grid-template-columns: min-content 1fr
+    grid-gap: 10px

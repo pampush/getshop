@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/getshop/static/css/main.3c168a76.chunk.css",
+    "main.js": "/getshop/static/js/main.cc2078e6.chunk.js",
+    "main.js.map": "/getshop/static/js/main.cc2078e6.chunk.js.map",
+    "runtime-main.js": "/getshop/static/js/runtime-main.6c915ae4.js",
+    "runtime-main.js.map": "/getshop/static/js/runtime-main.6c915ae4.js.map",
+    "static/css/2.679831fc.chunk.css": "/getshop/static/css/2.679831fc.chunk.css",
+    "static/js/2.233c3750.chunk.js": "/getshop/static/js/2.233c3750.chunk.js",
+    "static/js/2.233c3750.chunk.js.map": "/getshop/static/js/2.233c3750.chunk.js.map",
+    "index.html": "/getshop/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/getshop/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.3c168a76.chunk.css.map": "/getshop/static/css/main.3c168a76.chunk.css.map",
+    "static/js/2.233c3750.chunk.js.LICENSE.txt": "/getshop/static/js/2.233c3750.chunk.js.LICENSE.txt",
+    "static/media/close.3dbd87d2.svg": "/getshop/static/media/close.3dbd87d2.svg",
+    "static/media/main-bg.444fa48a.mp4": "/getshop/static/media/main-bg.444fa48a.mp4",
+    "static/media/main.sass": "/getshop/static/media/mobile-form-bg.a928b781.jpg",
+    "static/media/qr.33b283f6.jpg": "/getshop/static/media/qr.33b283f6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6c915ae4.js",
+    "static/css/2.679831fc.chunk.css",
+    "static/js/2.233c3750.chunk.js",
+    "static/css/main.3c168a76.chunk.css",
+    "static/js/main.cc2078e6.chunk.js"
+  ]
+}

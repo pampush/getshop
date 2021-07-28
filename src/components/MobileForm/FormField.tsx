@@ -45,7 +45,13 @@ function FormField({ value, format }: FormFieldProps) {
 
   return (
     <div className="mobile__field">
-      <span>{result}</span>
+      {result.split('').map((item: string, i: number) => {
+        return (
+          <span className={`${item === '_' ? 'mobile__char' : ''}`} key={i}>
+            {item !== '_' ? item : String.fromCharCode(160)}
+          </span>
+        );
+      })}
     </div>
   );
 }

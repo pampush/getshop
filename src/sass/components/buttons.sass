@@ -1,3 +1,5 @@
+@use '../mixins'
+
 .btn
   display: flex
   align-items: center
@@ -9,7 +11,9 @@
   text-transform: uppercase
   &:focus-visible
     outline: 2px solid white
-    
+  @include mixins.md 
+    font-size: 14px
+
   &__close
     position: absolute
     top: 20px
@@ -17,6 +21,8 @@
     border: 2px solid #000000
     background: #FFFFFF
     padding: 16px 30px
+    @include mixins.md
+      padding: 8px 14px
     svg
       width: 28px
       height: 24px

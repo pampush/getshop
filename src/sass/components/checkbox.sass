@@ -1,16 +1,20 @@
+@use '../mixins'
+  
 .mobile__checkbox
   width: 40px
   height: 40px
-
+  @include mixins.md
+    width: 30px
+    height: 30px
+    
 .checkbox
   display: block
   position: relative
-  padding: 10px
   cursor: pointer
   font-size: 14px
   color: #565656
   user-select: none
-  
+
   &__checkmark
     position: absolute
     top: 50%
@@ -22,6 +26,9 @@
     height: 40px
     width: 40px
     border: 2px solid #000000
+    @include mixins.md
+      height: 30px
+      width: 30px
     &:after
       content: ""
       display: none

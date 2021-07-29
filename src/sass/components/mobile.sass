@@ -11,6 +11,8 @@
     font-size: 26px
     font-weight: 400
     text-align: center
+    @include mixins.md
+      font-size: 18px
 
   &__cell
     display: flex
@@ -23,6 +25,9 @@
     background: transparent
     user-select: none
     text-transform: uppercase
+    @include mixins.md
+      font-size: 14px
+      padding: 8px 16px
     &:active
       background: #000000
       color: #FFFFFF
@@ -34,14 +39,17 @@
     grid-template-columns: repeat(3, 1fr)
     grid-gap: 10px
     padding: 20px 0
-
+    @include mixins.md
+      grid-gap: 4px
+      padding: 0
 
   &__field
     display: flex
     justify-content: center
     font-size: 30px
     font-weight: 700
-    letter-spacing: -1px
+    @include mixins.md
+      font-size: 20px
     span
       font-family: 'Roboto Mono', monospace
     &_error
@@ -49,19 +57,21 @@
 
   &__char
     text-decoration: underline
-      
 
   &__description
     font-size: 14px
     text-align: center
+    @include mixins.md
+      font-size: 12px  
 
   &__submit
     background: #000000
     color: #FFFFFF
     padding: 12px 50px 
     border: 1px solid #4E4E4E
-    @include mixins.sm
-      padding: 8px 30px
+    @include mixins.md
+      padding: 4px 9px
+
     &_disable
       background: transparent
       color: #4E4E4E
@@ -74,7 +84,9 @@
     grid-gap: 10px
     align-items: center 
     padding: 6px
-
+    @include mixins.md
+      font-size: 12px
+      
   &__qr
     position: absolute
     bottom: 20px
@@ -82,3 +94,5 @@
     img
       width: 314px
       height: auto 
+      @include mixins.md
+        width: 214px

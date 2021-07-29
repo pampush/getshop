@@ -41,11 +41,8 @@ const verifyNumber =
   async (number: string, countryCode: string) => {
     try {
       const data = await APIMethod(number, countryCode);
-      console.log('data', data);
-
       return data;
     } catch (e) {
-      console.log(e);
       throw new Error(e.message);
     }
   };

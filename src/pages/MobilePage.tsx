@@ -1,5 +1,5 @@
 import React, { Ref } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import MobileForm from '../components/MobileForm';
 import { ReactComponent as CloseIcon } from '../assets/images/close.svg';
@@ -9,15 +9,28 @@ import { useFormField } from '../components/MobileForm/FormField';
 import Checkbox from '../components/Checkbox';
 import NavigationLink from '../components/NavigationLink';
 import QRBlock from '../components/QRBlock';
+import { verify } from '../services/verifyNumberAPI';
+import Notification from '../components/Notification';
 
 const format = '+7(___)___-__-__';
 
 function MobilePage() {
   const [text, setText] = React.useState('');
   const [policyAgree, setPolicyAgree] = React.useState(false);
-  const [errors] = React.useState('');
+  const [errors, setErrors] = React.useState('');
+  const history = useHistory();
 
   const { matchLength } = useFormField(format);
+
+  async function handleSubmit() {
+    try {
+      const res = await verify(text, 'RU');
+      if (res.valid) history.push('/final');
+    } catch (error) {
+      setErrors(error.message);
+      console.error(error.message);
+    }
+  }
 
   return (
     <ArrowNavigationProvider initialActiveElement={[1, 1]} gridSize={[6, 4]}>
@@ -40,8 +53,8 @@ function MobilePage() {
 
         <Aside>
           <h2 className="mobile__title">Введите ваш номер мобильного телефона</h2>
-          
-          <MobileForm text={text} changeText={setText} format={format} />
+
+          <MobileForm text={text} changeText={setText} format={format} errors={errors }/>
 
           {!errors ? (
             <Checkbox
@@ -54,28 +67,38 @@ function MobilePage() {
               policyAgree={policyAgree}
               handleChange={() => setPolicyAgree((prev) => !prev)}
             />
-          ) : null}
+          ) : (
+            <Notification
+              onClose={() => setErrors('')}
+              duration={3000}
+              content={errors}
+              type="error"
+            />
+          )}
 
-          <NavigationLink<HTMLAnchorElement>
+          <NavigationLink<HTMLButtonElement>
             navPosition={[
               [6, 1],
               [6, 2],
               [6, 3],
             ]}>
-            {(ref: Ref<HTMLAnchorElement>) => {
+            {(ref: Ref<HTMLButtonElement>) => {
               const res =
                 text.length === matchLength && policyAgree ? (
-                  <Link ref={ref} className="btn mobile__submit" to="/final" tabIndex={0}>
-                    Подтвердить номер
-                  </Link>
-                ) : (
-                  <Link
+                  <button
                     ref={ref}
-                    className="btn mobile__submit mobile__submit_disable"
-                    to="/mobile"
+                    className="btn mobile__submit"
+                    onClick={handleSubmit}
                     tabIndex={0}>
                     Подтвердить номер
-                  </Link>
+                  </button>
+                ) : (
+                  <button
+                    ref={ref}
+                    className="btn mobile__submit mobile__submit_disable"
+                    tabIndex={0}>
+                    Подтвердить номер
+                  </button>
                 );
 
               return res;

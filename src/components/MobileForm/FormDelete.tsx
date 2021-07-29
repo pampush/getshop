@@ -13,7 +13,11 @@ function FormDelete({ content, handleDelete, navPosition }: FormDeleteProps) {
   return (
     <NavigationLink<HTMLButtonElement> navPosition={navPosition}>
       {(ref: Ref<HTMLButtonElement>) => (
-        <button ref={ref} className="mobile__cell mobile__cell_span2" onClick={handleDelete}>
+        <button
+          ref={ref}
+          className="mobile__cell mobile__cell_span2"
+          onClick={handleDelete}
+          aria-label={content}>
           {content}
         </button>
       )}

@@ -31,8 +31,12 @@ function ArrowNavigationProvider({
   const [activeElement, setActiveElement] =
     React.useState<navigationPosition>(initialActiveElement);
 
-  console.log(activeElement);
-
+  /**
+   *
+   * @param pos1
+   * @param active
+   * @returns
+   */
   const comparePositions = (
     pos1: navigationPosition | Array<navigationPosition>,
     active: navigationPosition,
@@ -52,12 +56,17 @@ function ArrowNavigationProvider({
     return result;
   };
 
+  /**
+   *
+   * @param pos
+   * @returns
+   */
   const boundsCheck = (pos: number[]) => {
     return gridSize[0] >= pos[0] && gridSize[1] >= pos[1] && pos[0] > 0 && pos[1] > 0;
   };
 
   React.useEffect(() => {
-    globalThis.addEventListener('keydown', (e: KeyboardEvent) => {
+    function handleKeyDown(e: KeyboardEvent) {
       switch (e.key) {
         case 'Up':
         case 'ArrowUp':
@@ -87,7 +96,12 @@ function ArrowNavigationProvider({
         default:
           break;
       }
-    });
+    }
+    globalThis.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      globalThis.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (

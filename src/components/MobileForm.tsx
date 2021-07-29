@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { KeyboardEvent } from 'react';
 import { navigationPosition } from '../contexts/ArrowNavigation';
 
 import FormCell from './MobileForm/FormCell';
@@ -9,13 +9,15 @@ interface MobileFormProps {
   text: string;
   changeText: React.Dispatch<React.SetStateAction<string>>;
   format: string;
+  errors: string
 }
 
-function MobileForm({ text, changeText, format }: MobileFormProps) {
+function MobileForm({ text, changeText, format, errors }: MobileFormProps) {
   const { matchLength } = useFormField(format);
 
   const handleClick = (char: string) => {
     if (text.length && text.length >= matchLength) return;
+
     changeText((prev) => prev.concat(char));
   };
 
@@ -23,20 +25,18 @@ function MobileForm({ text, changeText, format }: MobileFormProps) {
     changeText((prev) => prev.slice(0, -1));
   };
 
-  React.useEffect(() => {
-    globalThis.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Backspace') handleDelete();
-      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) handleClick(e.key);
-    });
-  }, []);
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Backspace') handleDelete();
+    if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) handleClick(e.key);
+  };
 
   return (
     <>
-      <FormField value={text} format={format} />
+      <FormField value={text} format={format} errors={errors}/>
       <span className="mobile__description">
         и с Вами свяжется наш менеджер для дальнейшей консультации
       </span>
-      <div className="mobile__panel">
+      <div className="mobile__panel" onKeyDown={handleKeyDown}>
         <FormCell content="1" handleClick={handleClick} navPosition={[1, 1]} />
         <FormCell content="2" handleClick={handleClick} navPosition={[1, 2]} />
         <FormCell content="3" handleClick={handleClick} navPosition={[1, 3]} />

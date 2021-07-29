@@ -3,6 +3,7 @@ import React from 'react';
 interface FormFieldProps {
   value: string;
   format: string;
+  errors: string;
 }
 
 /**
@@ -10,7 +11,7 @@ interface FormFieldProps {
  * @param format
  * @returns
  */
-const useFormField = (format: string) => {
+export const useFormField = (format: string) => {
   const matchLength = React.useRef(0);
 
   React.useEffect(() => {
@@ -26,7 +27,7 @@ const useFormField = (format: string) => {
  * @param param0
  * @returns
  */
-function FormField({ value, format }: FormFieldProps) {
+function FormField({ value, format, errors }: FormFieldProps) {
   const [result, setResult] = React.useState(format);
   const dashCounter = React.useRef(0);
 
@@ -44,9 +45,10 @@ function FormField({ value, format }: FormFieldProps) {
   }, [value]);
 
   return (
-    <div className="mobile__field">
+    <div className={`mobile__field ${errors ? 'mobile__field_error' : ''}`}>
       {result.split('').map((item: string, i: number) => {
         return (
+          // empty space &nbsp with underline
           <span className={`${item === '_' ? 'mobile__char' : ''}`} key={i}>
             {item !== '_' ? item : String.fromCharCode(160)}
           </span>
@@ -57,4 +59,3 @@ function FormField({ value, format }: FormFieldProps) {
 }
 
 export default FormField;
-export { useFormField };

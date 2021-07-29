@@ -17,7 +17,7 @@ function FormCell({ content, handleClick, navPosition }: FormCellProps) {
   return (
     <NavigationLink<HTMLButtonElement> navPosition={navPosition}>
       {(ref: Ref<HTMLButtonElement>) => (
-        <button ref={ref} className="mobile__cell" onClick={onClick}>
+        <button ref={ref} className="mobile__cell" onClick={onClick} aria-label={content}>
           {content}
         </button>
       )}

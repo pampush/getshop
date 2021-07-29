@@ -31,7 +31,7 @@ function MobilePage() {
             [6, 4],
           ]}>
           {(ref: Ref<HTMLAnchorElement>) => (
-            <Link ref={ref} className="btn mobile__close" to="/main" tabIndex={0}>
+            <Link ref={ref} className="btn mobile__close" to="/" tabIndex={0}>
               <CloseIcon />
             </Link>
           )}
@@ -63,7 +63,7 @@ function MobilePage() {
             {(ref: Ref<HTMLAnchorElement>) => {
               const res =
                 text.length === matchLength && policyAgree ? (
-                  <Link ref={ref} className="btn mobile__submit" to="/main" tabIndex={0}>
+                  <Link ref={ref} className="btn mobile__submit" to="/" tabIndex={0}>
                     Подтвердить номер
                   </Link>
                 ) : (

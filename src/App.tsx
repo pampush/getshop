@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/main">
+        <Route exact path="/">
           <MainPage />
         </Route>
         <Route path="/mobile">

@@ -1,0 +1,17 @@
+@use '../vars'
+
+.aside
+  display: grid
+  grid-template-columns: 1fr
+  grid-gap: 13px
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  background: vars.$primary-bg-color
+  padding: 72px 48px
+  width: 30vw
+
+  &__final
+    align-content: center
+    grid-template-rows: repeat(2, min-content)

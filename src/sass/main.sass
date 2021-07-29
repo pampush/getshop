@@ -1,8 +1,11 @@
 
 @use './components/mainScreen'
 @use './components/banner'
+@use './components/aside'
 @use './components/mobile'
 @use './components/checkbox'
+@use './components/buttons'
+@use './components/final'
 
 *, *:before, *:after 
   box-sizing: border-box
@@ -10,20 +13,10 @@
 h1, h2, h3, h4, h5, h6
   margin: 0 
 
-.btn
-  display: flex
-  align-items: center
-  justify-content: center
-  font-size: 1rem
-  font-weight: 500
-  cursor: pointer
-  text-decoration: none
-  text-transform: uppercase
-  &:focus-visible
-    outline: 2px solid white
-
 .global__active
-  background: pink
-
+  background: #000000
+  color: #FFFFFF
+  & > svg
+    fill: #FFFFFF
 body
   font-family: Roboto, sans-serif

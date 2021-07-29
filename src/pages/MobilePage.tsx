@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 
 import MobileForm from '../components/MobileForm';
 import { ReactComponent as CloseIcon } from '../assets/images/close.svg';
-import QRImage from '../assets/images/mobile-qr.png';
+import Aside from '../components/Aside';
 import ArrowNavigationProvider from '../contexts/ArrowNavigation';
 import { useFormField } from '../components/MobileForm/FormField';
 import Checkbox from '../components/Checkbox';
 import NavigationLink from '../components/NavigationLink';
+import QRBlock from '../components/QRBlock';
 
 const format = '+7(___)___-__-__';
 
@@ -31,17 +32,18 @@ function MobilePage() {
             [6, 4],
           ]}>
           {(ref: Ref<HTMLAnchorElement>) => (
-            <Link ref={ref} className="btn mobile__close" to="/" tabIndex={0}>
+            <Link ref={ref} className="btn btn__close" to="/" tabIndex={0}>
               <CloseIcon />
             </Link>
           )}
         </NavigationLink>
 
-        <div className="mobile__wrapper">
+        <Aside>
           <h2 className="mobile__title">Введите ваш номер мобильного телефона</h2>
+          
           <MobileForm text={text} changeText={setText} format={format} />
 
-          {!errors && (
+          {!errors ? (
             <Checkbox
               label="Согласие на обработку персональных данных"
               navPosition={[
@@ -52,7 +54,7 @@ function MobilePage() {
               policyAgree={policyAgree}
               handleChange={() => setPolicyAgree((prev) => !prev)}
             />
-          )}
+          ) : null}
 
           <NavigationLink<HTMLAnchorElement>
             navPosition={[
@@ -63,7 +65,7 @@ function MobilePage() {
             {(ref: Ref<HTMLAnchorElement>) => {
               const res =
                 text.length === matchLength && policyAgree ? (
-                  <Link ref={ref} className="btn mobile__submit" to="/" tabIndex={0}>
+                  <Link ref={ref} className="btn mobile__submit" to="/final" tabIndex={0}>
                     Подтвердить номер
                   </Link>
                 ) : (
@@ -75,13 +77,14 @@ function MobilePage() {
                     Подтвердить номер
                   </Link>
                 );
+
               return res;
             }}
           </NavigationLink>
-        </div>
+        </Aside>
 
         <div className="mobile__qr">
-          <img src={QRImage} height={200} width={300}></img>
+          <QRBlock />
         </div>
       </div>
     </ArrowNavigationProvider>

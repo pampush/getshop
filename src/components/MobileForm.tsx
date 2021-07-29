@@ -23,6 +23,12 @@ function MobileForm({ text, changeText, format }: MobileFormProps) {
     changeText((prev) => prev.slice(0, -1));
   };
 
+  React.useEffect(() => {
+    globalThis.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Backspace') handleDelete();
+      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) handleClick(e.key);
+    });
+  }, []);
 
   return (
     <>

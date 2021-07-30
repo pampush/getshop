@@ -9,7 +9,7 @@ interface MobileFormProps {
   text: string;
   changeText: React.Dispatch<React.SetStateAction<string>>;
   format: string;
-  errors: string
+  errors: string;
 }
 
 function MobileForm({ text, changeText, format, errors }: MobileFormProps) {
@@ -32,7 +32,7 @@ function MobileForm({ text, changeText, format, errors }: MobileFormProps) {
 
   return (
     <>
-      <FormField value={text} format={format} errors={errors}/>
+      <FormField value={text} format={format} errors={errors} />
       <span className="mobile__description">
         и с Вами свяжется наш менеджер для дальнейшей консультации
       </span>

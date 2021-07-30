@@ -7,6 +7,14 @@ interface NavigationLinkProps<T> {
   navPosition: navigationPosition | Array<navigationPosition>;
 }
 
+/**
+ * Main HOC for keyboard navigation.\
+ * It wraps any HTMLElement.\
+ * If context ActivePosition and wrapped element navPosition are equal then
+ * focus and apply styles on it 
+ * @param param0 
+ * @returns 
+ */
 function NavigationLink<T extends HTMLElement>({ children, navPosition }: NavigationLinkProps<T>) {
   const elemRef = React.useRef<T | null>(null);
   const { activeElement, comparePositions } = useArrowNavigation();

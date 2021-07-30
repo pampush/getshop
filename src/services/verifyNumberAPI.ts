@@ -9,7 +9,7 @@ interface ResponseData {
 type verifyNumberFunc = (num: string, country: string) => Promise<ResponseData>;
 
 /**
- *
+ * Specific API request logic
  * @param number
  * @param countryCode
  * @returns
@@ -32,7 +32,7 @@ const numVerifyAPI = async (number: string, countryCode: string): Promise<Respon
 };
 
 /**
- * Decorator for dependency inversion
+ * Decorator for dependency inversion. Makes possible API substitute without pain!
  * @param APIMethod
  * @returns
  */

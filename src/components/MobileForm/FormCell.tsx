@@ -9,6 +9,12 @@ interface FormCellProps {
   navPosition: navigationPosition | Array<navigationPosition>;
 }
 
+/**
+ * Component for user input. Button wrapped up with the NavigationLink HOC to apply keyboard
+ * navigation
+ * @param param0 
+ * @returns 
+ */
 function FormCell({ content, handleClick, navPosition }: FormCellProps) {
   const onClick = () => {
     handleClick(content);

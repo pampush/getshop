@@ -23,6 +23,13 @@ interface ArrowNavigationProps {
   gridSize: number[];
 }
 
+/**
+ * Context for keyboard navigation. 
+ * All navigable elements has position in grid. This context change activeElement position by every arrow key event,
+ * trigger children rerender and then compare new aciveElement position with assigned children positions. 
+ * @param param0 
+ * @returns 
+ */
 function ArrowNavigationProvider({
   children,
   initialActiveElement,
@@ -97,6 +104,7 @@ function ArrowNavigationProvider({
           break;
       }
     }
+    
     globalThis.addEventListener('keydown', handleKeyDown);
 
     return () => {

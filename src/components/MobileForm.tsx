@@ -12,6 +12,13 @@ interface MobileFormProps {
   errors: string;
 }
 
+/**
+ * Container for form components.\
+ * Loop through 1-9 FromCell is possible, but I don't care
+ *
+ * @param param0
+ * @returns
+ */
 function MobileForm({ text, changeText, format, errors }: MobileFormProps) {
   const { matchLength } = useFormField(format);
 
@@ -32,10 +39,14 @@ function MobileForm({ text, changeText, format, errors }: MobileFormProps) {
 
   return (
     <>
-      <FormField value={text} format={format} errors={errors} />
+      <div className={`mobile__field ${errors ? 'mobile__field_error' : ''}`}>
+        <FormField value={text} format={format} />
+      </div>
+
       <span className="mobile__description">
         и с Вами свяжется наш менеджер для дальнейшей консультации
       </span>
+
       <div className="mobile__panel" onKeyDown={handleKeyDown}>
         <FormCell content="1" handleClick={handleClick} navPosition={[1, 1]} />
         <FormCell content="2" handleClick={handleClick} navPosition={[1, 2]} />

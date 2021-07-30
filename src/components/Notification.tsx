@@ -9,6 +9,11 @@ interface NotificationProps {
   type: NotificationType;
 }
 
+/**
+ * Autohide notification
+ * @param param0 
+ * @returns 
+ */
 function Notification({ onClose, duration, content, type }: NotificationProps) {
   React.useEffect(() => {
     const id = setTimeout(onClose, duration);

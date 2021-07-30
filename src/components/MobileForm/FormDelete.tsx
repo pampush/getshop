@@ -9,6 +9,12 @@ interface FormDeleteProps {
   navPosition: navigationPosition | Array<navigationPosition>;
 }
 
+/**
+ * Differs from FormCell component. Button wrapped up with the NavigationLink HOC to apply keyboard
+ * navigation
+ * @param param0 
+ * @returns 
+ */
 function FormDelete({ content, handleDelete, navPosition }: FormDeleteProps) {
   return (
     <NavigationLink<HTMLButtonElement> navPosition={navPosition}>

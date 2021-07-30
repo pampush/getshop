@@ -3,12 +3,12 @@ import React from 'react';
 interface FormFieldProps {
   value: string;
   format: string;
-  errors: string;
 }
 
 /**
- *
- * @param format
+ * custom hook to calculate number of '_' characters in format string
+ * @param format Specifies template for input. E.g. 7_______ or Q__W__E__R_T_Y
+ * where '_' is a place to fill up
  * @returns
  */
 export const useFormField = (format: string) => {
@@ -23,11 +23,13 @@ export const useFormField = (format: string) => {
 };
 
 /**
- *
+ * Change '_' symbols with actual value parameter symbols.\
+ * Yeah, it could be plain for loop to filling up, but I decided to use RegExp).\
+ * Also there is hack with using monospace font to make underline _ continious ____
  * @param param0
  * @returns
  */
-function FormField({ value, format, errors }: FormFieldProps) {
+function FormField({ value, format }: FormFieldProps) {
   const [result, setResult] = React.useState(format);
   const dashCounter = React.useRef(0);
 
@@ -45,7 +47,7 @@ function FormField({ value, format, errors }: FormFieldProps) {
   }, [value]);
 
   return (
-    <div className={`mobile__field ${errors ? 'mobile__field_error' : ''}`}>
+    <>
       {result.split('').map((item: string, i: number) => {
         return (
           // empty space &nbsp with underline
@@ -54,7 +56,7 @@ function FormField({ value, format, errors }: FormFieldProps) {
           </span>
         );
       })}
-    </div>
+    </>
   );
 }
 

@@ -5,6 +5,11 @@ interface AsideProps {
   modifier?: string;
 }
 
+/**
+ * 
+ * @param param0 modifier - additional BEM modifier class
+ * @returns 
+ */
 function Aside({ children, modifier }: AsideProps) {
   return <div className={`aside ${modifier ? modifier : ''}`}>{children}</div>;
 }

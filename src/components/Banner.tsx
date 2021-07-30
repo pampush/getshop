@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import qrCode from '../assets/images/qr.jpg';
 import NavigationLink from './NavigationLink';
 
+/**
+ * 
+ * @returns 
+ */
 function Banner() {
   return (
     <div className="banner main__banner">

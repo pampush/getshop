@@ -1,3 +1,23 @@
+## GetShop test assignment
+ http://getshop.netlify.app/
+ ### Stack
+ * React,  react-router-dom
+ * Typescript
+ * axios
+ * Netlify Functions
+ * sass
+ 
+ ### Keyboard nav
+ Навигация выполнена с помощью массива позиций элемента навигации (формат: [1,1]) и контекста, содержащего стейт текущей позиции.
+ Этот стейт контекста меняется по нажатию одной из стрелочных клавиш. 
+ Например, имея текущую позицию [1,2] при нажатии на кнопку "Вниз" (при условии что сетка ниже существует) контекст обоновится со стейтом [1,3].
+ Далее вызовется ререндер для всех чайлдов, и равный этой позиции элемент будет в фокусе.
+
+ ### Validation
+ Реализована валидации номера при помощи VerifyNum API. Так как ключ API на клиенте хранить нельзя, то воспользовался serverless решением Netlify Functions, которое позволяет
+ реализовать API из необходимых приложению функций.
+ 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

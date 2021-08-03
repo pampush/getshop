@@ -24,11 +24,11 @@ interface ArrowNavigationProps {
 }
 
 /**
- * Context for keyboard navigation. 
+ * Context for keyboard navigation.
  * All navigable elements has position in grid. This context change activeElement position by every arrow key event,
- * trigger children rerender and then compare new aciveElement position with assigned children positions. 
- * @param param0 
- * @returns 
+ * trigger children rerender and then compare new aciveElement position with assigned children positions.
+ * @param param0
+ * @returns
  */
 function ArrowNavigationProvider({
   children,
@@ -37,6 +37,8 @@ function ArrowNavigationProvider({
 }: ArrowNavigationProps) {
   const [activeElement, setActiveElement] =
     React.useState<navigationPosition>(initialActiveElement);
+
+  console.log(activeElement);
 
   /**
    *
@@ -104,7 +106,7 @@ function ArrowNavigationProvider({
           break;
       }
     }
-    
+
     globalThis.addEventListener('keydown', handleKeyDown);
 
     return () => {

@@ -1,7 +1,7 @@
-import React, { Ref } from 'react';
+import React from 'react';
 
 import { navigationPosition } from '../../contexts/ArrowNavigation';
-import NavigationLink from '../NavigationLink';
+import useNavigationLink from '../../hooks/useNavigationLink';
 
 interface FormDeleteProps {
   content: string;
@@ -12,22 +12,20 @@ interface FormDeleteProps {
 /**
  * Differs from FormCell component. Button wrapped up with the NavigationLink HOC to apply keyboard
  * navigation
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 function FormDelete({ content, handleDelete, navPosition }: FormDeleteProps) {
+  const { elemRef } = useNavigationLink<HTMLButtonElement>(navPosition, 'global__active');
+
   return (
-    <NavigationLink<HTMLButtonElement> navPosition={navPosition}>
-      {(ref: Ref<HTMLButtonElement>) => (
-        <button
-          ref={ref}
-          className="mobile__cell mobile__cell_span2"
-          onClick={handleDelete}
-          aria-label={content}>
-          {content}
-        </button>
-      )}
-    </NavigationLink>
+    <button
+      ref={elemRef}
+      className="mobile__cell mobile__cell_span2"
+      onClick={handleDelete}
+      aria-label={content}>
+      {content}
+    </button>
   );
 }
 

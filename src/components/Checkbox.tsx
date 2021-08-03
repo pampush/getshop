@@ -1,6 +1,7 @@
 import React, { KeyboardEvent } from 'react';
 
-import { useArrowNavigation, navigationPosition } from '../contexts/ArrowNavigation';
+import { navigationPosition } from '../contexts/ArrowNavigation';
+import useNavigationLink from '../hooks/useNavigationLink';
 
 interface CheckboxProps {
   label: string;
@@ -11,21 +12,12 @@ interface CheckboxProps {
 
 /**
  * Custom checkbox. Also triggered by Enter key.\
- * Not wrapped up in NavigationLink to not apply global__active style 
+ * Not wrapped up in NavigationLink to not apply global__active style
  * @param param0
  * @returns
  */
 function Checkbox({ label, navPosition, policyAgree, handleChange }: CheckboxProps) {
-  const elemRef = React.useRef<HTMLLabelElement>(null);
-  const { activeElement, comparePositions } = useArrowNavigation();
-
-  // NavigationLink component logic
-  React.useEffect(() => {
-    if (!elemRef) return;
-    if (comparePositions(navPosition, activeElement)) {
-      elemRef.current?.focus();
-    }
-  }, [activeElement]);
+  const { elemRef } = useNavigationLink<HTMLLabelElement>(navPosition);
 
   const handleClick = (e: KeyboardEvent<HTMLLabelElement>) => {
     if (e.key === 'Enter') handleChange();
